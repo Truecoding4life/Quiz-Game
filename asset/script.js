@@ -48,7 +48,6 @@
 // }
 
 
-var count = 5
 var win = 0
 var index = 0
 
@@ -71,25 +70,20 @@ const questionS = [{
 ];
 
 // Add Function to Button
-document.getElementById("start").addEventListener("click", function (event) {
+document.getElementById("start").addEventListener("click", function gameStart(event) {
     event.preventDefault;
 
-
-// MAINIPULATE TEXT BOX USING METHOD
-    document.getElementById("intro").classList.remove("visible");
-    document.getElementById("intro").classList.add("hidden");
-    document.getElementById("game").classList.remove("hidden");
-    document.getElementById("game").classList.add("visible");
-    
-    
-// SET INTERVAL FOR FUNCTION timeOut.
-    const timeLapse=setInterval(timeOut, 1000);
-
+    // SET INTERVAL FOR FUNCTION timeOut.
+    var timeLapse = setInterval(timeOut, 1000);
+    var count = 30
     function timeOut() {
         if (count > 0) {
+            gameMode();
             count--;
+            console.log(count)
             //something = true
-            document.getElementById("timeLeft").textContent(count)
+            var countDown = document.querySelector("#countdown");
+            countDown.textContent = count;
         }
         if (count == 0) {
             clearInterval(timeLapse);
@@ -100,4 +94,22 @@ document.getElementById("start").addEventListener("click", function (event) {
         }
     }
 
+    var randomQuestion=Math.floor(Math.random()*questionS[index].answer[length]);
+    var option1 = document.querySelector("option1")
+    var option2 = document.querySelector("option2")
+    var option3 = document.querySelector("option3")
+    option1.textContent=questionS[index].answer[0]
+    option2.textContent=questionS[index].answer[1]
+    option3.textContent=questionS[index].answer[2]
+
 })
+
+// MAINIPULATE TEXT BOX USING METHOD
+function gameMode() {
+    document.getElementById("intro").classList.remove("visible");
+    document.getElementById("intro").classList.add("hidden");
+    document.getElementById("game").classList.remove("hidden");
+    document.getElementById("game").classList.add("visible");
+    document.getElementById("timerBox").classList.remove("hidden");
+    document.getElementById("timerBox").classList.add("visible");
+};
