@@ -21,8 +21,8 @@ main {
 
 header {
     height: 150px;
-    background-color: rgba(129, 48, 180, 0.762);
-    color: rgb(204, 216, 219);
+    background-color: rgba(127, 45, 178, 0.762);
+    color: rgb(233, 243, 245);
     border-radius: 20px;
     margin-bottom: 120px;
     padding: 10px;
@@ -47,7 +47,7 @@ body {
 
 main section,
 header {
-    box-shadow: rgba(25, 29, 34, 0.2) 0px 8px 24px;
+    box-shadow: rgba(86, 135, 196, 0.2) 0px 8px 24px;
 }
 
 .hidden {
@@ -60,11 +60,12 @@ header {
 
 main #start {
     border-radius: 15px;
-    width:300px;
+    width:250px;
     height: 50px;
     font-weight: 800;
     background-color: #d4af2bed;
     font-family: 'Poppins', sans-serif;
+    margin-left: 15px;
 }
 
 #start:hover{
@@ -81,7 +82,9 @@ section h2 {
 main section:hover{
     box-shadow:0px 8px 30px rgba(85, 93, 103, 0.857) ;
 }
-
+h3, main p {
+    color: rgb(62, 200, 149);
+}
 @media screen and (max-width:1000px) {
     main section {
         margin-bottom: 100px;

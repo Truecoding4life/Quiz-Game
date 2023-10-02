@@ -47,29 +47,29 @@
 
 // }
 
-
-var win = 0
-var index = [0, 1, 2]
+var l = 0;
+var w = 0;
+var index = [0, 1, 2,3]
 
 // QUESTION ARE SORT USING OBJECT and ARRAY
 const questionS = [{
-    question: "question 1",
-    answer: ["a", "b", "c",],
-    correct: "a"
+    question: "How Many Letter Is in cat ?",
+    answer: ["1", "2", "3",],
+    correct: "3",
 
 }, {
-    question: "question 2",
-    answer: ["d", "e", "f",],
-    correct: "f"
+    question: "The question only take keyup input so can you please input in the selection with 3",
+    answer: ["zzzzz", "zzzzzzz", "zzzz3z",],
+    correct: "3",
 }, {
-    question: "question 3",
-    answer: ["d", "e", "f",],
-    correct: "f"
+    question: "Do I deserve an A on this weekly challenge ? ",
+    answer: ["1 for Yes", "2 for No", "3 for sure",],
+    correct: "3",
 }
 
 ];
 
-// Add Function to Button
+// Add Function to Button that point to the function game start
 document.getElementById("start").addEventListener("click", function gameStart(event) {
     event.preventDefault;
 
@@ -85,16 +85,13 @@ document.getElementById("start").addEventListener("click", function gameStart(ev
             var countDown = document.querySelector("#countdown");
             countDown.textContent = count;
         }
-        if (count == 0) {
-            clearInterval(timeLapse);
+        if (count < 0) {
             gameOver();
 
         }
     }
     var index = 0;
-    // I WANT THE COMPUTER TO GENERATE A RANDOM INDEX, EACH INDEX REPRESENT A PROBLEM && ANSWER SET :)
-    //var index = Math.floor(Math.random()*3);
-    //var randomQuestion = Math.floor(Math.random() * questionS[index].answer[length]);
+    // I WANT THE INDEX TO GOES FROM 0 TO 3 AND 3 BEING THE END OF THE GAME AND THAT WILL TRIGGER THE GAMEOVER FUNCTION.
     var option1 = document.querySelector("#option1");
     var option2 = document.querySelector("#option2");
     var option3 = document.querySelector("#option3");
@@ -113,9 +110,14 @@ document.getElementById("start").addEventListener("click", function gameStart(ev
             option1.textContent = questionS[index].answer[0];
             option2.textContent = questionS[index].answer[1];
             option3.textContent = questionS[index].answer[2];
-            if (index > 2) {
+            if (index === 3) {
                 gameOver();
                 userWon();
+                document.getElementById("game").classList.remove("visible");
+                document.getElementById("game").classList.add("hidden");
+                document.getElementById("gameOver").classList.remove("hidden");
+                document.getElementById("gameOver").classList.add("visible");
+                endMessage();
             
             }
         } else {
@@ -123,33 +125,55 @@ document.getElementById("start").addEventListener("click", function gameStart(ev
             this.document.getElementById("Alert").textContent="- 5s for every wrong answer =)"
 
         }
-        // SETTING KEY EVENT
-
-
+        if (index<1 && count < 0) {
+            userLost();
+            gameOver();
+            endMessage();
+        }
+    if (count<=0){
+        document.getElementById("game").classList.remove("visible");
+        document.getElementById("game").classList.add("hidden");
+        document.getElementById("gameOver").classList.remove("hidden");
+        document.getElementById("gameOver").classList.add("visible");
+        document.getElementById("").textContent="Game Over"
+    }
     })
 })
-
+var dialog;
 // ONCE USER CLICK GAME MODE IS TURN ON
 function gameMode() {
     document.getElementById("intro").classList.remove("visible");
     document.getElementById("intro").classList.add("hidden");
     document.getElementById("game").classList.remove("hidden");
     document.getElementById("game").classList.add("visible");
-    var dialog = ["The Game have started", " your time is ticking 😝"]
+    const dialog = ["The Game have started", " your time is ticking 😝"]
     document.querySelector(".timerBox").textContent = dialog;
 };
 
+// THIS IS THE MOVE THE GAME TURN OFF EVERYTHING
 function gameOver() {
     document.getElementById("game").classList.remove("visible");
     document.getElementById("game").classList.add("hidden");
     document.getElementById("gameOver").classList.remove("hidden");
     document.getElementById("gameOver").classList.add("visible");
+    clearInterval(timeLapse);
+    document.querySelector("#greet").textContent = "Game have have ended"
+    document.getElementById("Alert").textContent=""
+
 }
 function userWon(){
-    alert ("You have made it to the end thank you for playing");
-    clearInterval(timeLapse);
+    w++;
+   endMessage();
 }
 
-// function nextQuestion(value){
-//     value=Math.floor(Math.random()*3)    
-// }
+function userLost(){
+    l++;
+    endMessage();
+
+}
+
+function endMessage(){
+    document.querySelector(".timerBox").textContent ="You have made it to the end thank you for playing";
+    document.getElementById("Alert").textContent=""
+    document.getElementById("countdown").textContent="0"
+}
