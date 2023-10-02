@@ -1,0 +1,62 @@
+.root {
+    --theme-main: rgba(111, 53, 146, 0.899);
+}
+
+main section {
+    background-color: rgba(185, 144, 211, 0.591);
+    width: 300px;
+    height: 300px;
+    padding: 10px;
+    border-radius: 20px;
+    margin: 0;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    justify-content: space-evenly;
+    max-width: 2000px
+}
+
+header {
+    height: 150px;
+    background-color: rgba(185, 144, 211, 0.591);
+    border-radius: 20px;
+    margin-bottom: 120px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 1400px;
+}
+
+body {
+    background-image: url("./background\ color.jpg");
+    background-size: cover;
+    height: 1400px;
+    font-family: 'Poppins', sans-serif;
+    color:beige;
+
+}
+
+main section,
+header {
+    box-shadow: rgba(25, 29, 34, 0.2) 0px 8px 24px;
+}
+
+.hidden {
+    display: none;
+}
+
+.visible {
+    display:block;
+}
+
+
+@media screen and (max-width:674px) {
+    main section {
+        margin-bottom: 50px;
+    }
+}
