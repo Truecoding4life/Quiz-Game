@@ -49,24 +49,28 @@
 
 var l = 0;
 var w = 0;
-var index = [0, 1, 2,3]
+var index = [0, 1, 2, 3,]
 
 // QUESTION ARE SORT USING OBJECT and ARRAY
 const questionS = [{
-    question: "How Many Letter Is in cat ?",
+    question: "How Many Letter Is in cat ?, type 1, 2 or 3.",
     answer: ["1", "2", "3",],
     correct: "3",
 
 }, {
-    question: "The question only take keyup input so can you please input in the selection with 3",
+    question: "Can you please type the name of option with 3, type 1, 2 or 3.",
     answer: ["zzzzz", "zzzzzzz", "zzzz3z",],
     correct: "3",
 }, {
-    question: "Do I deserve an A on this weekly challenge ? ",
-    answer: ["1 for Yes", "2 for No", "3 for sure",],
+    question: "How many week is in a year, type 1, 2 or 3 ",
+    answer: ["54", "53", "52",],
     correct: "3",
+}, {
+    question: "You have reached the end of the game do you want to continue ?, Type 1 or 2.",
+    answer: ["Option 1: Try Again", "Option 2: Save Score",],
+    correct: "1",
+    Score: ["name", "score"]
 }
-
 ];
 
 // Add Function to Button that point to the function game start
@@ -75,23 +79,25 @@ document.getElementById("start").addEventListener("click", function gameStart(ev
 
     // SET INTERVAL FOR FUNCTION timeOut.
     var timeLapse = setInterval(timeOut, 1000);
-    var count = 30
+    var count = 60
     function timeOut() {
         if (count > 0) {
             gameMode();
             count--;
             console.log(count);
-            //something = true
             var countDown = document.querySelector("#countdown");
-            countDown.textContent = count;
+            countDown.textContent = "YOU GOT " + count + " SECONDs !";
         }
-        if (count < 0) {
+        if (count < 10) {
+            countDown.textContent = "YOU GOT " + count + " SECOND ";
+        }
+        if (count <= 0) {
             gameOver();
 
         }
     }
     var index = 0;
-    // I WANT THE INDEX TO GOES FROM 0 TO 3 AND 3 BEING THE END OF THE GAME AND THAT WILL TRIGGER THE GAMEOVER FUNCTION.
+    // I WANT THE INDEX TO GOES FROM 0 TO 3 AND 4 BEING THE END OF THE GAME.
     var option1 = document.querySelector("#option1");
     var option2 = document.querySelector("#option2");
     var option3 = document.querySelector("#option3");
@@ -99,8 +105,12 @@ document.getElementById("start").addEventListener("click", function gameStart(ev
     option1.textContent = questionS[index].answer[0];
     option2.textContent = questionS[index].answer[1];
     option3.textContent = questionS[index].answer[2];
+    if (index > 3) {
+        vs
+    }
     // NOW THAT EVERY SET OF QUESTION IS LINKED WITH A SET OF ANSWER
     // NEXT IS LINKING A THE RIGHT PASSWORD WITH THE RIGHT KEYUP EVENT.
+
     window.addEventListener("keydown", function (event) {
         console.log(event);
         var key = event.key;
@@ -110,33 +120,41 @@ document.getElementById("start").addEventListener("click", function gameStart(ev
             option1.textContent = questionS[index].answer[0];
             option2.textContent = questionS[index].answer[1];
             option3.textContent = questionS[index].answer[2];
-            if (index === 3) {
-                gameOver();
-                userWon();
+
+            if (index >= 5 && count > 0) {
+                count -= 100;
                 document.getElementById("game").classList.remove("visible");
                 document.getElementById("game").classList.add("hidden");
                 document.getElementById("gameOver").classList.remove("hidden");
                 document.getElementById("gameOver").classList.add("visible");
-                endMessage();
-            
+                document.getElementById("").textContent = "Game Over"
+                gameOver();
+                userWon();
             }
+
+
+            // NEXT I'M GONNA MAKE A FUNCTION FOR THE SCOREBOARD
         } else {
             count -= 5;
-            this.document.getElementById("Alert").textContent="- 5s for every wrong answer =)"
+            this.document.getElementById("Alert").textContent = "- 5s for every wrong answer =)"
 
         }
-        if (index<1 && count < 0) {
+        if (index < 3 && count <= 0) {
             userLost();
             gameOver();
-            endMessage();
+
+
         }
-    if (count<=0){
-        document.getElementById("game").classList.remove("visible");
-        document.getElementById("game").classList.add("hidden");
-        document.getElementById("gameOver").classList.remove("hidden");
-        document.getElementById("gameOver").classList.add("visible");
-        document.getElementById("").textContent="Game Over"
-    }
+        if (count <= 0) {
+            gameOver();
+            userLost();
+        }
+        if (index==3){
+            document.getElementById("greetTitle").textContent = "YOU WON !! ";
+            document.getElementById("greet").textContent="TIMER HAS STOPPED "
+            document.getElementById("Alert").textContent=""
+            clearInterval(timeLapse);
+        }
     })
 })
 var dialog;
@@ -146,7 +164,7 @@ function gameMode() {
     document.getElementById("intro").classList.add("hidden");
     document.getElementById("game").classList.remove("hidden");
     document.getElementById("game").classList.add("visible");
-    const dialog = ["The Game have started", " your time is ticking 😝"]
+    var dialog = "THE GAME HAVE STARTED";
     document.querySelector(".timerBox").textContent = dialog;
 };
 
@@ -156,24 +174,20 @@ function gameOver() {
     document.getElementById("game").classList.add("hidden");
     document.getElementById("gameOver").classList.remove("hidden");
     document.getElementById("gameOver").classList.add("visible");
+    document.getElementById("greetTitle").textContent = "YOU GONE OUT OF TIME";
+    document.getElementById("greet").textContent = "YOUR BEST SCORE YET ?"
+    document.getElementById("Alert").textContent = ""
     clearInterval(timeLapse);
-    document.querySelector("#greet").textContent = "Game have have ended"
-    document.getElementById("Alert").textContent=""
 
 }
-function userWon(){
+function userWon() {
     w++;
-   endMessage();
+
 }
 
-function userLost(){
+function userLost() {
     l++;
-    endMessage();
 
 }
 
-function endMessage(){
-    document.querySelector(".timerBox").textContent ="You have made it to the end thank you for playing";
-    document.getElementById("Alert").textContent=""
-    document.getElementById("countdown").textContent="0"
-}
+
