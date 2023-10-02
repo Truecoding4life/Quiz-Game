@@ -18,7 +18,12 @@
         <h1>Welcome to the timer quiz</h1>
         <p> created by student 2023</p>
     </header>
+    
     <main id="content">
+        <section id="scoreboard">
+            <h2>Scoreboard</h2>
+            <div style="width: 280px; height: 350px; background-color: rgba(48, 56, 56, 0.764); border-radius: 10px; padding: 8px;"></div>
+        </section>
         <section id="intro" class="visible">
             <h2> Please Start the Quiz </h2>
             <button id="start" type="button"> Start here</button>
@@ -47,14 +52,11 @@
         </section>
         <section id="timerDisplay">
             <h2> Timer Machine</h2>
-            <div style="width: 280px; height: 350px; background-color: rgba(48, 56, 56, 0.764); border-radius: 10px; padding: 8px;" id="timerBox" class="hidden">
-            <h3> You timer has started</h3>
-            <h3> You got <span id="countdown"></span></h3>
+            <div style="width: 280px; height: 350px; background-color: rgba(48, 56, 56, 0.764); border-radius: 10px; padding: 8px;">
+            <h3 class="timerBox" ></h3>
+            <h3 class="timerBox"><span id="countdown"></span></h3>
+            <h3 id="Alert" style="color: rgb(247, 7, 7);"></h3>
             </div>
-        </section>
-        <section id="scoreboard">
-            <h2>Scoreboard</h2>
-            <div style="width: 280px; height: 350px; background-color: rgba(48, 56, 56, 0.764); border-radius: 10px; padding: 8px;"</div>
         </section>
     </main>
     <!-- <button id="start"  type="button"> Click me</button> -->
