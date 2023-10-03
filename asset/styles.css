@@ -85,6 +85,33 @@ main section:hover{
 h3, main p {
     color: rgb(62, 200, 149);
 }
+
+#restartBox {
+    display: flex;
+    justify-content: space-between;
+    justify-content: space-around;
+
+}
+#restartBox h4 {
+    color: rgb(222, 195, 20);
+}
+#restartBox h4 p {
+    background-color: rgba(95, 99, 157, 0.556);
+    padding-inline: 20px;
+    padding-block: 10px;
+    border-radius: 10px;
+    color: white;
+    
+}
+.restartGame {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 7px;
+}
+#restartBox h4 p:hover {
+    box-shadow:0px 8px 36px rgba(55, 60, 65, 0.857) ;
+}
 @media screen and (max-width:1000px) {
     main section {
         margin-bottom: 100px;

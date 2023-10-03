@@ -50,7 +50,7 @@
 var l = 0;
 var w = 0;
 var index = [0, 1, 2, 3,]
-
+var userName="";
 // QUESTION ARE SORT USING OBJECT and ARRAY
 const questionS = [{
     question: "How Many Letter Is in cat ?, type 1, 2 or 3.",
@@ -68,10 +68,13 @@ const questionS = [{
 }, {
     question: "You have reached the end of the game do you want to continue ?, Type 1 or 2.",
     answer: ["Option 1: Try Again", "Option 2: Save Score",],
-    correct: "1",
-    Score: ["name", "score"]
+    correct: ["1","2"],
+    saveScore: ['', w,],
 }
 ];
+
+
+
 
 // Add Function to Button that point to the function game start
 document.getElementById("start").addEventListener("click", function gameStart(event) {
@@ -96,6 +99,13 @@ document.getElementById("start").addEventListener("click", function gameStart(ev
 
         }
     }
+
+    // var userData = { 
+    //     username:input,
+    //     score:w,
+    // }
+    
+    // console.log(userData.username)
     var index = 0;
     // I WANT THE INDEX TO GOES FROM 0 TO 3 AND 4 BEING THE END OF THE GAME.
     var option1 = document.querySelector("#option1");
@@ -105,9 +115,9 @@ document.getElementById("start").addEventListener("click", function gameStart(ev
     option1.textContent = questionS[index].answer[0];
     option2.textContent = questionS[index].answer[1];
     option3.textContent = questionS[index].answer[2];
-    if (index > 3) {
-        vs
-    }
+    // if (index > 3) {
+    //     vs
+    // }
     // NOW THAT EVERY SET OF QUESTION IS LINKED WITH A SET OF ANSWER
     // NEXT IS LINKING A THE RIGHT PASSWORD WITH THE RIGHT KEYUP EVENT.
 
@@ -121,14 +131,7 @@ document.getElementById("start").addEventListener("click", function gameStart(ev
             option2.textContent = questionS[index].answer[1];
             option3.textContent = questionS[index].answer[2];
 
-            if (index >= 5 && count > 0) {
-                count -= 100;
-                document.getElementById("game").classList.remove("visible");
-                document.getElementById("game").classList.add("hidden");
-                document.getElementById("gameOver").classList.remove("hidden");
-                document.getElementById("gameOver").classList.add("visible");
-                document.getElementById("").textContent = "Game Over"
-                gameOver();
+            if (index >= 3 && count > 0) {
                 userWon();
             }
 
@@ -139,24 +142,32 @@ document.getElementById("start").addEventListener("click", function gameStart(ev
             this.document.getElementById("Alert").textContent = "- 5s for every wrong answer =)"
 
         }
-        if (index < 3 && count <= 0) {
+        if (index < 3 && count <= 0 || count <=0) {
             userLost();
             gameOver();
-
-
-        }
-        if (count <= 0) {
-            gameOver();
-            userLost();
         }
         if (index==3){
             document.getElementById("greetTitle").textContent = "YOU WON !! ";
-            document.getElementById("greet").textContent="TIMER HAS STOPPED "
+            document.getElementById("greet").textContent="TIMER HAS STOPPED ";
             document.getElementById("Alert").textContent=""
             clearInterval(timeLapse);
         }
+
+        if (key==questionS[index].correct[1]){
+            var userInputName = this.prompt("Please Enter Name");
+                console.log("The Window got this Input: " + userInputName);
+                // this.document.questionS.saveScore.push(userInputName);
+                // console.log(this.document.questionS.saveScore);
+        }
+        // console.log(userInputName);
     })
+
+
 })
+
+
+
+
 var dialog;
 // ONCE USER CLICK GAME MODE IS TURN ON
 function gameMode() {
@@ -168,7 +179,7 @@ function gameMode() {
     document.querySelector(".timerBox").textContent = dialog;
 };
 
-// THIS IS THE MOVE THE GAME TURN OFF EVERYTHING
+// THIS IS THE MOVE THE GAME TURN OFF EVERYTHING IF TIMER SHUTDOWN
 function gameOver() {
     document.getElementById("game").classList.remove("visible");
     document.getElementById("game").classList.add("hidden");
@@ -180,6 +191,8 @@ function gameOver() {
     clearInterval(timeLapse);
 
 }
+
+
 function userWon() {
     w++;
 
@@ -187,7 +200,6 @@ function userWon() {
 
 function userLost() {
     l++;
-
 }
 
 
