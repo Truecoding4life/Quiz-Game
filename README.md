@@ -10,7 +10,7 @@ Website design to do timer quizzes and save user information in client-side for 
 * Update your repository and use accordingly
 
 ## USAGE 
-* Open the webpage user should see a page beautiful webpage with html element and css stylings.
+* Open the webpage user should see a beautiful and responsive webpage with html elements and css stylings.
 * Then user will click on start button to begin the game
 * User will be ask to enter answer only in number for each question.
 * After game is over user will be ask if they want to save their name and score.
@@ -27,7 +27,24 @@ Website design to do timer quizzes and save user information in client-side for 
 ![USER WILL BE ABLE TO SAVE THEIR NAME ON SCORE BOARD](./images/Prompt.png)
 
 ## CREDIT
-Throughout this project I learned that using comment on js or html is very useful when it come to project this complexity. I have only been coding for 2 weeks and I have grew from this project with all the wall that I ran into. 
+Throughout this project I learned that using comment on js or html is very useful when it come to project this complexity. I have only been coding for 2 weeks and I have grew from this project with all the wall that I ran into. Doing pseudo code really with what is the next step to solve the problem.
+
+Pseudo code:
+1. Have a button, when clicked ->
+    * Game start
+        * Display question
+            if answer is correct move to next question
+            else subtract the clock by # of time
+        * After answer question another question appear
+    * Timer Start
+        * when timer reach 0
+            * if all question is answer == win 
+            * else == game is over
+2. When game is over
+    * I can save my initial + score:
+
+This is a Mock Up if This Project
+![Mock Up](./asset/images/04-web-apis-homework-demo.gif)
 
 
 
@@ -427,21 +444,3 @@ the avoidance of doubt, this paragraph does not form part of the public
 licenses.
 
 Creative Commons may be contacted at creativecommons.org.
-
-
-Pseudo code:
-1. Have a button, when clicked ->
-    * Game start
-        * Display question
-            if answer is correct move to next question
-            else subtract the clock by # of time
-        * After answer question another question appear
-    * Timer Start
-        * when timer reach 0
-            * if all question is answer == win 
-            * else == game is over
-2. When game is over
-    * I can save my initial + score:
-
-This is a Mock Up if This Project
-![Mock Up](./asset/images/04-web-apis-homework-demo.gif)
