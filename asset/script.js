@@ -74,9 +74,7 @@ const questionS = [{
 ];
 
 
-displayUser();
-
-// Add Function to Button that point to the function game start
+    // Add Function to Button that point to the function game start
 document.getElementById("start").addEventListener("click", function gameStart(event) {
     event.preventDefault;
 
@@ -138,32 +136,49 @@ document.getElementById("start").addEventListener("click", function gameStart(ev
         if (index < 3 && count <= 0 || count <= 0) {
             userLost();
             gameOver();
+
         }
         if (index == 3) {
+            const index=3
             document.getElementById("greetTitle").textContent = "YOU WON !! ";
             document.getElementById("greet").textContent = "TIMER HAS STOPPED ";
             document.getElementById("Alert").textContent = ""
-            clearInterval(timeLapse);
+            clearInterval();
         }
 
         if (key == questionS[index].correct[1]) {
             var userInputName = this.prompt("Please Enter Name");
-            console.log("The Window got this Input: " + userInputName);
-            this.localStorage.setItem("username", userInputName);
-            this.localStorage.setItem("score", w);
-            displayUser();
+            console.log("The Window got this Input: " + userInputName); // WE WILL RECORD INOUT NAME ON CONSOLE
+            // WE GONNA ATTEMP TO SEND USER INPUT INTO LOCAL FILES
+            this.localStorage.setItem("username", JSON.stringify([userInputName,w,])); 
+            renderUser();// DISPLAY LOCAL STORAGE FILE
             console.log(userInputName +" Have been added to Local Storage")
-
         }
-
+        renderUser();
+        if (key == questionS[3].correct[0] && index === 3){
+                this.location.reload();
+        }
     })
-
+    w=0;
 })
+ 
+function renderUser (){
+    var UserInfo=JSON.parse(localStorage.getItem("username"));
+        console.log(UserInfo);
+        var name = UserInfo[0];
+        var score = UserInfo[1];
+        document.querySelector("#user1").textContent = UserInfo[0];
+        document.querySelector("#user2").textContent = name;
+        document.querySelector("#user1score").textContent = UserInfo[1];
+        document.querySelector("#user2score").textContent = score;
+    }
 
-function displayUser() {
-    document.querySelector("#user1").textContent = localStorage.getItem("username");
-    document.querySelector("#user2").textContent = localStorage.getItem("username");
-}
+
+
+// function displayUser() {
+//     document.querySelector("#user1").textContent = localStorage.getItem("username");
+//     document.querySelector("#user2").textContent = localStorage.getItem("username");
+// }
 // ONCE USER CLICK GAME MODE IS TURN ON
 function gameMode() {
     document.getElementById("intro").classList.remove("visible");
