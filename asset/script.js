@@ -50,7 +50,7 @@
 var l = 0;
 var w = 0;
 var index = [0, 1, 2, 3,]
-var userName="";
+var userName = "";
 // QUESTION ARE SORT USING OBJECT and ARRAY
 const questionS = [{
     question: "How Many Letter Is in cat ?, type 1, 2 or 3.",
@@ -68,13 +68,13 @@ const questionS = [{
 }, {
     question: "You have reached the end of the game do you want to continue ?, Type 1 or 2.",
     answer: ["Option 1: Try Again", "Option 2: Save Score",],
-    correct: ["1","2"],
+    correct: ["1", "2"],
     saveScore: ['', w,],
 }
 ];
 
 
-
+displayUser();
 
 // Add Function to Button that point to the function game start
 document.getElementById("start").addEventListener("click", function gameStart(event) {
@@ -100,12 +100,6 @@ document.getElementById("start").addEventListener("click", function gameStart(ev
         }
     }
 
-    // var userData = { 
-    //     username:input,
-    //     score:w,
-    // }
-    
-    // console.log(userData.username)
     var index = 0;
     // I WANT THE INDEX TO GOES FROM 0 TO 3 AND 4 BEING THE END OF THE GAME.
     var option1 = document.querySelector("#option1");
@@ -115,17 +109,16 @@ document.getElementById("start").addEventListener("click", function gameStart(ev
     option1.textContent = questionS[index].answer[0];
     option2.textContent = questionS[index].answer[1];
     option3.textContent = questionS[index].answer[2];
-    // if (index > 3) {
-    //     vs
-    // }
+
     // NOW THAT EVERY SET OF QUESTION IS LINKED WITH A SET OF ANSWER
     // NEXT IS LINKING A THE RIGHT PASSWORD WITH THE RIGHT KEYUP EVENT.
 
-    window.addEventListener("keydown", function (event) {
+    window.addEventListener("keyup", function (event) {
         console.log(event);
         var key = event.key;
         if (key == questionS[index].correct) {
             index += 1;
+            w++;
             document.querySelector("#questionAsk").textContent = questionS[index].question;
             option1.textContent = questionS[index].answer[0];
             option2.textContent = questionS[index].answer[1];
@@ -142,33 +135,35 @@ document.getElementById("start").addEventListener("click", function gameStart(ev
             this.document.getElementById("Alert").textContent = "- 5s for every wrong answer =)"
 
         }
-        if (index < 3 && count <= 0 || count <=0) {
+        if (index < 3 && count <= 0 || count <= 0) {
             userLost();
             gameOver();
         }
-        if (index==3){
+        if (index == 3) {
             document.getElementById("greetTitle").textContent = "YOU WON !! ";
-            document.getElementById("greet").textContent="TIMER HAS STOPPED ";
-            document.getElementById("Alert").textContent=""
+            document.getElementById("greet").textContent = "TIMER HAS STOPPED ";
+            document.getElementById("Alert").textContent = ""
             clearInterval(timeLapse);
         }
 
-        if (key==questionS[index].correct[1]){
+        if (key == questionS[index].correct[1]) {
             var userInputName = this.prompt("Please Enter Name");
-                console.log("The Window got this Input: " + userInputName);
-                // this.document.questionS.saveScore.push(userInputName);
-                // console.log(this.document.questionS.saveScore);
-        }
-        // console.log(userInputName);
-    })
+            console.log("The Window got this Input: " + userInputName);
+            this.localStorage.setItem("username", userInputName);
+            this.localStorage.setItem("score", w);
+            displayUser();
+            console.log(userInputName +" Have been added to Local Storage")
 
+        }
+
+    })
 
 })
 
-
-
-
-var dialog;
+function displayUser() {
+    document.querySelector("#user1").textContent = localStorage.getItem("username");
+    document.querySelector("#user2").textContent = localStorage.getItem("username");
+}
 // ONCE USER CLICK GAME MODE IS TURN ON
 function gameMode() {
     document.getElementById("intro").classList.remove("visible");
