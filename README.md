@@ -1,4 +1,4 @@
-# Web APIs Challenge: Code Quiz
+# Web APIs : Code Quiz
 
 ## DESCRIPTION 
 Website design to do timer quizzes and save user information in client-side for later access.
