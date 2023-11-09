@@ -39,16 +39,25 @@ Website design to do timer quizzes and save user information in client-side for 
 
 
 **Home Screen**
+
+
 ![ON LOAD](./images/Welcome%20Screen.png)
 
 **Start The Game**
+
+
+
 ![TO START GAME CLICK HERE](./images/To-start.png)
 
 **Answer Validation**
+
+
 ![IF USER FAIL TO ANSWER BEFORE TIME](./images/Lose.png)
 ![IF USER ANSWER ALL QUESTIONS CORRECTLY](./images/Won.png)
 
 **User Score Save**
+
+
 ![USER WILL BE ABLE TO SAVE THEIR NAME ON SCORE BOARD](./images/Prompt.png)
 
 
